@@ -4,139 +4,372 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LZ Design</title>
+    <title> LZ Design</title>
     <link rel="icon" type="image/jpeg" href="img/Lz%20Desing.jpeg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="estilos.css">
 </head>
-
 <body>
+    <!-- Encabezado principal con navbar -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-md navbar-dark navbar-custom">
+            <div class="container py-2">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio" aria-label="LZ Design logo">
+                    <img src="img/Lz%20Desing.jpeg" alt="LZ Design" class="brand-logo">
+                    <span class="brand-text">LZ Design</span>
+                </a>
 
-    <header class="topbar">
-        <div class="brand" aria-label="LZ Design logo">
-            <img src="img/Lz%20Desing.jpeg" alt="LZ Design" class="brand-logo">
-        </div>
-        <nav>
-            <a href="#inicio">Inicio</a>
-            <a href="#productos">Colección</a>
-            <a href="#nosotros">Historia</a>
-            <a href="#contacto">Contacto</a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav mx-auto align-items-lg-center gap-lg-3 text-uppercase fw-semibold small">
+                        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#productos">Colección</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#nosotros">Historia</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    </ul>
+
+                    <div class="nav-actions d-flex align-items-center gap-2 ms-lg-3 mt-3 mt-lg-0">
+                        <span id="userBadge" class="user-badge d-none">Hola</span>
+                        <button type="button" class="btn btn-primary-soft btn-sm rounded-pill fw-bold px-3" data-bs-toggle="modal" data-bs-target="#authModal">Iniciar sesión</button>
+                        <button type="button" class="btn btn-secondary-soft btn-sm rounded-pill px-3 d-none" id="logoutButton">Cerrar sesión</button>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <main>
+    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content auth-modal">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="visually-hidden" id="authModalLabel">Acceso a la cuenta</h5>
+                    <div class="auth-tabs" id="authTabs">
+                        <button type="button" class="auth-tab active" data-auth-tab="login">Iniciar sesión</button>
+                        <button type="button" class="auth-tab" data-auth-tab="register">Registrarse</button>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
 
-        <section id="inicio" class="hero">
-            <div class="hero-text">
-                <span class="eyebrow">Vestir con estilo con identidad</span>
-                <h1>VESTIMOS <span>LA CALLE</span> Y EL HOGAR.</h1>
-                <p>
+                <div class="modal-body px-4 pb-4 pt-3">
+                    <form id="loginForm" class="auth-form active">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Correo</label>
+                            <input type="email" id="loginEmail" class="form-control" placeholder="tuemail@correo.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Contraseña</label>
+                            <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary-soft rounded-pill fw-bold">Entrar</button>
+                        </div>
+                        <div class="form-message mt-3" data-message-for="login"></div>
+                    </form>
+
+                    <form id="registerForm" class="auth-form">
+                        <div class="mb-3">
+                            <label for="registerName" class="form-label">Nombre</label>
+                            <input type="text" id="registerName" class="form-control" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">Correo</label>
+                            <input type="email" id="registerEmail" class="form-control" placeholder="tuemail@correo.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">Contraseña</label>
+                            <input type="password" id="registerPassword" class="form-control" placeholder="Mínimo 6 caracteres" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerConfirmPassword" class="form-label">Confirmar contraseña</label>
+                            <input type="password" id="registerConfirmPassword" class="form-control" placeholder="Repite tu contraseña" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary-soft rounded-pill fw-bold">Crear cuenta</button>
+                        </div>
+                        <div class="form-message mt-3" data-message-for="register"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal informativo de bienvenida -->
+    <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow">
+                <div class="modal-header border-0 pb-0">
+                    <h2 class="modal-title h4 fw-bold" id="welcomeModalLabel">¡Bienvenido a LZ Design!</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-secondary">
+                    Somos una marca familiar de Bogotá. Explora nuestra colección y descubre prendas creadas con identidad propia.
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-primary-soft rounded-pill px-4" data-bs-dismiss="modal">¡Vamos a explorar!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <main class="container py-4 py-lg-5">
+        <!-- Hero / sección principal -->
+        <section id="inicio" class="hero-panel row align-items-center g-4 g-lg-5 mb-5">
+            <div class="col-lg-7">
+                <span class="eyebrow d-inline-block mb-3">Vestir con estilo con identidad</span>
+                <h1 class="display-4 display-md-3 fw-bolder text-uppercase lh-1 mb-3">
+                    Vestimos <span class="title-accent">la calle</span> y el hogar.
+                </h1>
+                <p class="lead text-secondary mb-4">
                     Somos una familia creando ropa con identidad, actitud y personalidad para quienes quieren marcar su propio estilo.
                 </p>
 
-                <div class="botones">
-                    <a href="#productos" class="btn btn-primary">Ver colección</a>
-                    <a href="#nosotros" class="btn btn-secondary">Nuestra historia</a>
+                <div class="d-flex flex-wrap gap-3 mb-4">
+                    <a href="#productos" class="btn btn-primary-soft btn-lg px-4 fw-bold rounded-pill">Ver colección</a>
+                    <a href="#nosotros" class="btn btn-secondary-soft btn-lg px-4 fw-bold rounded-pill">Nuestra historia</a>
+                    <button type="button" class="btn btn-outline-dark btn-lg px-4 rounded-pill" data-bs-toggle="modal" data-bs-target="#welcomeModal">Conócenos</button>
                 </div>
 
-                <ul class="lista-ventajas">
+                <ul class="list-unstyled d-flex flex-wrap gap-3 gap-md-4 mb-0 text-uppercase small fw-bold">
                     <li>✔ Diseño propio</li>
                     <li>✔ Comfort real</li>
                     <li>✔ Atención humana</li>
                 </ul>
             </div>
 
-            <div class="hero-visual" aria-label="Gato de la marca">
-                <img src="img/Gato.jpeg" alt="Gato estilo under" class="hero-glyph">
-            </div>
-        </section>
-
-        <section class="resumen">
-            <article class="resumen-item">
-                <span>🏙️</span>
-                <h3>Estilo calle</h3>
-                <p>Una estética más auténtica, con actitud y personalidad propia.</p>
-            </article>
-
-            <article class="resumen-item">
-                <span>🧵</span>
-                <h3>Materiales</h3>
-                <p>Materiales elegidos por la madre del hogar, y usted sabe que la madre no elige a la ligera.</p>
-            </article>
-
-            <article class="resumen-item">
-                <span>🤝</span>
-                <h3>Vínculo familiar</h3>
-                <p>Todo nace desde la cercanía, la confianza y el cuidado por la comunidad.</p>
-            </article>
-        </section>
-
-        <section id="productos" class="productos">
-
-            <article class="producto">
-                <div class="imagen-producto">👕</div>
-                <h3>Calle Base</h3>
-                <p>Camiseta sobria, cómoda y lista para moverse con estilo.</p>
-                <strong>$45.000</strong>
-            </article>
-
-            <article class="producto">
-                <div class="imagen-producto">🧥</div>
-                <h3>Zona Heavy</h3>
-                <p>Buzo con presencia y corte urbano para el día a día.</p>
-                <strong>$85.000</strong>
-            </article>
-
-            <article class="producto">
-                <div class="imagen-producto">👖</div>
-                <h3>Street Classic</h3>
-                <p>Jean con actitud, versátil y resistente para cualquier plan.</p>
-                <strong>$110.000</strong>
-            </article>
-
-        </section>
-
-        <section id="nosotros" class="informacion">
-            <div class="texto-nosotros">
-                <h2>La historia detrás de la marca</h2>
-                <p>
-                    FAM. CLN nace como un proyecto familiar que quiere romper con lo común.
-                    No es una tienda cualquiera: es una forma de vestir con identidad,
-                    cercanía y una mirada auténtica del barrio.
-                </p>
-                <p>
-                    Buscamos crear nuestra propia identidad, nuestra propia moda, nuestro estilo, buscamos crear...
-                </p>
-            </div>
-
-            <div class="valores">
-                <div class="valor">
-                    <h4>Identidad</h4>
-                    <p>Diseño con carácter y personalidad propia.</p>
-                </div>
-                <div class="valor">
-                    <h4>Comodidad</h4>
-                    <p>Ropa funcional para vivir sin complicaciones.</p>
-                </div>
-                <div class="valor">
-                    <h4>Confianza</h4>
-                    <p>Un servicio cercano que sabe escuchar.</p>
+            <div class="col-lg-5">
+                <div class="hero-visual text-center">
+                    <img src="img/Gato.jpeg" alt="Gato estilo under" class="img-fluid rounded-4 shadow-lg">
                 </div>
             </div>
         </section>
 
-        <section id="contacto" class="contacto">
-            <h2>Hablemos</h2>
-            <p>Estamos listos para atender pedidos, consultas y nuevas ideas.</p>
-            <p><strong>WhatsApp:</strong> 300 772 9675</p>
-            <p><strong>Email:</strong> danielfelipok@gmail.com</p>
+        <!-- Catálogo en grilla Bootstrap: 1 columna móvil, 2 tablet, 3 escritorio -->
+        <section id="servicios" class="mb-5" aria-labelledby="servicesTitle">
+            <div class="text-center mb-4">
+                <span class="eyebrow d-inline-block mb-3">Diseño familiar, estilo propio</span>
+                <h2 class="section-title text-uppercase mb-2" id="servicesTitle">Lo que nos inspira</h2>
+                <p class="text-secondary mb-0">Tres piezas de nuestra colección para descubrir el universo LZ.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card h-100 bg-light border-0 rounded-4 shadow-sm overflow-hidden">
+                        <img src="img/Dise%C3%B1os/IMG-20260811-WA0010.jpg" class="card-img-top catalog-card-image" alt="Buzo Calle Base de LZ Design">
+                        <div class="card-body p-4">
+                            <h3 class="card-title h5 fw-bold">Calle Base</h3>
+                            <p class="card-text text-secondary mb-0">Un buzo cómodo para las noches frescas de Bogotá, con identidad de barrio y estilo propio.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card h-100 bg-light border-0 rounded-4 shadow-sm overflow-hidden">
+                        <img src="img/Dise%C3%B1os/IMG-20260811-WA0011.jpg" class="card-img-top catalog-card-image" alt="Prenda Zona Heavy de LZ Design">
+                        <div class="card-body p-4">
+                            <h3 class="card-title h5 fw-bold">Zona Heavy</h3>
+                            <p class="card-text text-secondary mb-0">Una propuesta con carácter para quienes construyen su propio estilo y no siguen fórmulas.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card h-100 bg-light border-0 rounded-4 shadow-sm overflow-hidden">
+                        <img src="img/Dise%C3%B1os/IMG-20260811-WA0012.jpg" class="card-img-top catalog-card-image" alt="Prenda Street Classic de LZ Design">
+                        <div class="card-body p-4">
+                            <h3 class="card-title h5 fw-bold">Street Classic</h3>
+                            <p class="card-text text-secondary mb-0">Gatos, estrellas y una mirada urbana se encuentran en este diseño original de la familia.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
         </section>
 
+        <!-- Bloque de características -->
+        <section class="row g-4 mb-5">
+            <div class="col-md-4">
+                <article class="card h-100 bg-dark text-light border border-secondary-subtle shadow-sm feature-card">
+                    <div class="card-body">
+                        <div class="display-6 mb-3">🏙️</div>
+                        <h3 class="h5 text-uppercase fw-bold mb-3">Estilo calle</h3>
+                        <p class="text-secondary mb-0">Una estética más auténtica, con actitud y personalidad propia.</p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col-md-4">
+                <article class="card h-100 bg-dark text-light border border-secondary-subtle shadow-sm feature-card">
+                    <div class="card-body">
+                        <div class="display-6 mb-3">🧵</div>
+                        <h3 class="h5 text-uppercase fw-bold mb-3">Materiales</h3>
+                        <p class="text-secondary mb-0">Materiales elegidos por la madre del hogar, y usted sabe que la madre no elige a la ligera.</p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col-md-4">
+                <article class="card h-100 bg-dark text-light border border-secondary-subtle shadow-sm feature-card">
+                    <div class="card-body">
+                        <div class="display-6 mb-3">🤝</div>
+                        <h3 class="h5 text-uppercase fw-bold mb-3">Vínculo familiar</h3>
+                        <p class="text-secondary mb-0">Todo nace desde la cercanía, la confianza y el cuidado por la comunidad.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Sección de colección / carousel -->
+        <section id="productos" class="mb-5">
+            <div class="text-center mb-4">
+
+                <h2 class="section-title text-uppercase mb-0">Nuestra esencia</h2>
+            </div>
+
+            <div id="carouselColeccion" class="carousel slide carousel-custom" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselColeccion" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselColeccion" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselColeccion" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+
+                <div class="carousel-inner rounded-4 overflow-hidden shadow-lg">
+                    <div class="carousel-item active">
+                        <article class="card product-slide border-0 rounded-0">
+                            <div class="card-body text-center p-4 p-md-5">
+                                <img src="img/Diseños/IMG-20260811-WA0010.jpg" alt="Calle Base" class="product-image">
+                                <h3 class="h2 fw-bold text-uppercase mb-3">Calle Base</h3>
+                                <p class="text-secondary mb-3">El buso perfecto pa las noches estrelladas de nuestra fria Bogotá.</p>
+                                <strong class="fs-4 title-accent">$125.000</strong>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="carousel-item">
+                        <article class="card product-slide border-0 rounded-0">
+                            <div class="card-body text-center p-4 p-md-5">
+                                <img src="img/Diseños/IMG-20260811-WA0011.jpg" alt="Zona Heavy" class="product-image">
+                                <h3 class="h2 fw-bold text-uppercase mb-3">Zona Heavy</h3>
+                                <p class="text-secondary mb-3">Don´t worry por el stylo.</p>
+                                <strong class="fs-4 title-accent">$85.000</strong>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="carousel-item">
+                        <article class="card product-slide border-0 rounded-0">
+                            <div class="card-body text-center p-4 p-md-5">
+                                <img src="img/Diseños/IMG-20260811-WA0012.jpg" alt="Street Classic" class="product-image">
+                                <h3 class="h2 fw-bold text-uppercase mb-3">Street Classic</h3>
+                                <p class="text-secondary mb-3">Estrellas? Gatos? Bogotá eres tú?.</p>
+                                <strong class="fs-4 title-accent">$110.000</strong>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselColeccion" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselColeccion" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Sección historia / identidad -->
+        <section id="nosotros" class="row g-4 align-items-stretch mb-5">
+            <div class="col-lg-6">
+                <div class="card bg-dark text-light border border-secondary-subtle h-100 shadow-sm">
+                    <div class="card-body p-4 p-lg-5">
+                        <span class="eyebrow d-inline-block mb-3">Nuestra historia</span>
+                        <h2 class="section-title text-uppercase mb-3">La marca detrás del estilo</h2>
+                        <p class="text-secondary">
+                            LZ Design nace como un proyecto familiar que quiere romper con lo común. No es una tienda cualquiera: es una forma de vestir con identidad, cercanía y una mirada auténtica del barrio.
+                        </p>
+                        <p class="text-secondary mb-0">
+                            Buscamos crear nuestra propia identidad, nuestra propia moda, nuestro estilo, buscamos crear... una forma genuina de expresarse con carácter.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="row g-3 h-100">
+                    <div class="col-12">
+                        <div class="card bg-dark text-light border border-secondary-subtle h-100 shadow-sm">
+                            <div class="card-body p-4">
+                                <h4 class="text-uppercase fw-bold title-accent mb-2">Identidad</h4>
+                                <p class="text-secondary mb-0">Diseño con carácter y personalidad propia.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card bg-dark text-light border border-secondary-subtle h-100 shadow-sm">
+                            <div class="card-body p-4">
+                                <h4 class="text-uppercase fw-bold title-accent mb-2">Comodidad</h4>
+                                <p class="text-secondary mb-0">Ropa funcional para vivir sin complicaciones.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card bg-dark text-light border border-secondary-subtle h-100 shadow-sm">
+                            <div class="card-body p-4">
+                                <h4 class="text-uppercase fw-bold title-accent mb-2">Confianza</h4>
+                                <p class="text-secondary mb-0">Un servicio cercano que sabe escuchar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bloque de contacto -->
+        <section id="contacto" class="contact-card text-center mb-5">
+            <div class="card bg-dark text-light border border-secondary-subtle shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+                    <h2 class="section-title text-uppercase mb-3">Hablemos</h2>
+                    <p class="text-secondary mb-4">Estamos listos para atender pedidos, consultas y nuevas ideas.</p>
+
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <span class="contact-icon" aria-label="Número de WhatsApp">
+                                <i class="bi bi-telephone"></i>
+                            </span>
+                            <div class="contact-content">
+                                <span class="contact-label">WhatsApp</span>
+                                <a href="tel:+573007729675">300 772 9675</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <span class="contact-icon" aria-label="Correo electrónico">
+                                <i class="bi bi-envelope"></i>
+                            </span>
+                            <div class="contact-content">
+                                <span class="contact-label">Email</span>
+                                <a href="mailto:danielfelipok@gmail.com">danielfelipok@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 FAM. CLN — estilo propio, raíces familiares.</p>
+    <!-- Footer final -->
+    <footer class="border-top border-accent-soft bg-dark text-center py-4">
+        <p class="mb-0 text-secondary">&copy; 2026 FAM. CLN — estilo propio, raíces familiares.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="logica-js.js"></script>
 </body>
 </html>
 ```
